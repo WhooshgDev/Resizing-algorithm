@@ -12,3 +12,7 @@ _preview.jpg
 .env
 .~lock.*
 *.docx#
+/demo_*.jpg
+/out_*.jpg
+scripts/
+submisson*.txt
