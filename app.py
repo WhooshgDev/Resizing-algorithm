@@ -32,7 +32,7 @@ if uploaded:
     st.subheader("Original")
     col1, col2 = st.columns([1, 1])
     with col1:
-        st.image(pil, caption=f"{w}x{h}", use_container_width=True)
+        st.image(pil, caption=f"{w}x{h}", width='stretch')
     with col2:
         st.markdown(f"**Dimensions:** {w} x {h} px")
 
@@ -78,7 +78,7 @@ if uploaded:
                 st.subheader("Result")
                 col_a, col_b = st.columns([1, 1])
                 with col_a:
-                    st.image(Image.fromarray(result), caption=f"{label}  {new_w}x{new_h}", use_container_width=True)
+                    st.image(Image.fromarray(result), caption=f"{label}  {new_w}x{new_h}", width='stretch')
                 with col_b:
                     st.markdown(f"**Algorithm:** {label}")
                     st.markdown(f"**Dimensions:** {result.shape[1]} x {result.shape[0]} px")
