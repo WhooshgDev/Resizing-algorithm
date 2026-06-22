@@ -41,7 +41,7 @@ Classifies images into TEXT/GRAPHIC/PHOTO/DEFAULT using edge density, color rich
 
 ## Report
 
-See `report/report.pdf` for full documentation (17 pages, English).
+See `report/report.pdf` for full documentation (12 pages, English).
 
 ## Project structure
 
