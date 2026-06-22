@@ -315,6 +315,18 @@ if len(nonzero) >= 5 and i >= 10:
     \item Scale the remaining deficit with Lanczos interpolation
 \end{enumerate}
 
+\begin{figure}[H]
+\centering
+\begin{tabular}{ccc}
+    \includegraphics[width=0.25\textwidth]{test_images/picsum_0.jpg} &
+    \includegraphics[width=0.25\textwidth]{out_photo_hybrid.jpg} &
+    \includegraphics[width=0.25\textwidth]{demo_hybrid.jpg} \\
+    Original ($800\times600$) & Adaptive hybrid ($400\times300$) & Pure seam carve ($400\times300$)
+\end{tabular}
+\caption{Adaptive hybrid vs. pure seam carving on a photograph. Hybrid preserves ground content better by switching to scaling when seams hit high-energy regions}
+\label{fig:hybrid_demo}
+\end{figure}
+
 \subsubsection{Key Design Decisions}
 
 \begin{itemize}
@@ -363,6 +375,20 @@ Algorithm mapping:
 
 The program was tested on 24 images: 20 photographs from picsum.photos and 4 generated images (text document, chart, UI screenshot, abstract graphic). All images were $800\times 600$ pixels.
 
+\begin{figure}[H]
+\centering
+\begin{tabular}{cc}
+    \includegraphics[width=0.28\textwidth]{test_images/picsum_0.jpg} &
+    \includegraphics[width=0.28\textwidth]{test_images/gen_text.jpg} \\
+    (a) Sample photo & (b) Generated text \\
+    \includegraphics[width=0.28\textwidth]{test_images/gen_chart.jpg} &
+    \includegraphics[width=0.28\textwidth]{test_images/gen_ui.jpg} \\
+    (c) Generated chart & (d) Generated UI
+\end{tabular}
+\caption{Sample test images from the 24-image dataset}
+\label{fig:samples}
+\end{figure}
+
 \subsection{Classification Results}
 
 \begin{table}[H]
@@ -384,6 +410,22 @@ Graphic & default & 0.029 & 0.078 & 0.498 & hybrid \\
 
 Classification accuracy: \textbf{22/24 (91.7\%)}. The abstract graphic was misclassified as \texttt{default} due to high color richness from random colored circles.
 
+\begin{figure}[H]
+\centering
+\begin{tabular}{ccc}
+    \includegraphics[width=0.18\textwidth]{test_images/picsum_0.jpg} &
+    \includegraphics[width=0.18\textwidth]{out_photo_seam.jpg} &
+    \includegraphics[width=0.18\textwidth]{out_photo_scale.jpg} \\
+    Original & Seam carve & Scale \\
+    \includegraphics[width=0.18\textwidth]{out_photo_crop.jpg} &
+    \includegraphics[width=0.18\textwidth]{out_photo_letterbox.jpg} &
+    \includegraphics[width=0.18\textwidth]{out_photo_hybrid.jpg} \\
+    Smart crop & Letterbox & Adaptive hybrid
+\end{tabular}
+\caption{Comparison of all algorithms on a sample photograph}
+\label{fig:photo_compare}
+\end{figure}
+
 \subsection{Adaptive Hybrid Performance}
 
 \begin{table}[H]
@@ -402,6 +444,34 @@ Graphic & $365 + 300$ & $35 + 0$ & Sparse regions carved; dense preserved \\
 \bottomrule
 \end{tabular}
 \end{table}
+
+\begin{figure}[H]
+\centering
+\begin{tabular}{cc}
+    \includegraphics[width=0.22\textwidth]{test_images/gen_text.jpg} &
+    \includegraphics[width=0.22\textwidth]{out_text_seam.jpg} \\
+    Original text & Seam carve result \\
+    \includegraphics[width=0.22\textwidth]{out_text_scale.jpg} &
+    \includegraphics[width=0.22\textwidth]{out_text_hybrid.jpg} \\
+    Scale result & Adaptive hybrid result
+\end{tabular}
+\caption{Comparison on text document -- seam carving distorts letters, scaling and hybrid preserve readability}
+\label{fig:text_compare}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{tabular}{cc}
+    \includegraphics[width=0.22\textwidth]{test_images/gen_chart.jpg} &
+    \includegraphics[width=0.22\textwidth]{out_chart_seam.jpg} \\
+    Original chart & Seam carve result \\
+    \includegraphics[width=0.22\textwidth]{out_chart_scale.jpg} &
+    \includegraphics[width=0.22\textwidth]{out_chart_hybrid.jpg} \\
+    Scale result & Adaptive hybrid result
+\end{tabular}
+\caption{Comparison on chart image -- seam carving preserves shape, hybrid carves borders then scales}
+\label{fig:chart_compare}
+\end{figure}
 
 \subsection{Key Observations}
 

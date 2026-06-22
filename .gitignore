@@ -10,3 +10,5 @@ __pycache__/
 *.synctex.gz
 _preview.jpg
 .env
+.~lock.*
+*.docx#
